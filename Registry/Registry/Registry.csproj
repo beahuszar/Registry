@@ -69,6 +69,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Association.cs" />
+    <Compile Include="Models\AssociationAddress.cs" />
+    <Compile Include="Models\BaseAddress.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
