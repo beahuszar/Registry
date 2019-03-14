@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.DesktopClient.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.Windows.Tests", "..\Tests\Registry.Windows.Tests\Registry.Windows.Tests.csproj", "{BFAA4825-6D30-4C9B-88BA-C95900F47C28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.Data", "Registry.Data\Registry.Data.csproj", "{726E4701-D220-46F7-AC98-EB6E32C7188F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.Data.Tests", "..\Tests\Registry.Data.Tests\Registry.Data.Tests.csproj", "{C3B94924-3BA9-4706-8018-57CDF238DB18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{BFAA4825-6D30-4C9B-88BA-C95900F47C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFAA4825-6D30-4C9B-88BA-C95900F47C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFAA4825-6D30-4C9B-88BA-C95900F47C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{726E4701-D220-46F7-AC98-EB6E32C7188F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{726E4701-D220-46F7-AC98-EB6E32C7188F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{726E4701-D220-46F7-AC98-EB6E32C7188F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{726E4701-D220-46F7-AC98-EB6E32C7188F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B94924-3BA9-4706-8018-57CDF238DB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B94924-3BA9-4706-8018-57CDF238DB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B94924-3BA9-4706-8018-57CDF238DB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B94924-3BA9-4706-8018-57CDF238DB18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +58,8 @@ Global
 		{D82E4798-6C30-43B6-9742-0FE79A077794} = {74F889E2-E74A-4461-9A81-9EBEA22D76DF}
 		{AED03CA0-ADA8-441E-AC70-E3FE5358A4C3} = {EA1E7C41-59BC-4B68-ACB3-A0B4D86DA1EC}
 		{BFAA4825-6D30-4C9B-88BA-C95900F47C28} = {EA1E7C41-59BC-4B68-ACB3-A0B4D86DA1EC}
+		{726E4701-D220-46F7-AC98-EB6E32C7188F} = {74F889E2-E74A-4461-9A81-9EBEA22D76DF}
+		{C3B94924-3BA9-4706-8018-57CDF238DB18} = {EA1E7C41-59BC-4B68-ACB3-A0B4D86DA1EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {721235E3-9240-4265-80F7-11C7E22D5941}
