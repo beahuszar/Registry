@@ -64,8 +64,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\ObservableObject.cs" />
-    <Compile Include="Helpers\ViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -75,7 +73,7 @@
     <Compile Include="ViewModels\Association.cs" />
     <Compile Include="ViewModels\AssociationAddress.cs" />
     <Compile Include="ViewModels\BaseAddress.cs" />
-    <Compile Include="ViewModels\Person.cs" />
+    <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\PersonAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -101,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Registry.Windows\Registry.Windows.csproj">
+      <Project>{D82E4798-6C30-43B6-9742-0FE79A077794}</Project>
+      <Name>Registry.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

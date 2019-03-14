@@ -1,10 +1,10 @@
-﻿using Registry.DesktopClient.Helpers;
+﻿using Registry.Windows;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Registry.DesktopClient.ViewModels
 {
-    public class Person : ViewModel
+    public class PersonViewModel : ViewModel
     {
         #region Private fields
 

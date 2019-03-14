@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Registry.DesktopClient.Helpers
+namespace Registry.Windows
 {
     public class ObservableObject : INotifyPropertyChanged
     {

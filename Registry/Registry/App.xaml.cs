@@ -20,7 +20,7 @@ namespace Registry.DesktopClient
             base.OnStartup(e);
             var window = new MainWindow
             {
-                DataContext = new Person()
+                DataContext = new PersonViewModel()
             };
             window.ShowDialog();
         }

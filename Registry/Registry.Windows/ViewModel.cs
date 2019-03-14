@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
-namespace Registry.DesktopClient.Helpers
+namespace Registry.Windows
 {
     /// <summary>
     /// If we have a property that is decorated with a data validation attribute
