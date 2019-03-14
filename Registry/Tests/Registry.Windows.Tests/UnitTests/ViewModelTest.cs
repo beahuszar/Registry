@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Registry.Windows;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tests
+namespace Registry.Windows.Tests.UnitTests
 {
     [TestClass]
     public class ViewModelTest

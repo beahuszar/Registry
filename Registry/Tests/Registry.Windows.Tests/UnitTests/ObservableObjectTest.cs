@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Registry.Windows;
 
-namespace Tests
+namespace Registry.Windows.Tests.UnitTests
 {
     [TestClass]
     public class ObservableObjectTest
