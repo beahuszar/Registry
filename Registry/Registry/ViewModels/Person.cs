@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Registry.DesktopClient.Helpers;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Registry
+namespace Registry.DesktopClient.ViewModels
 {
     public class Person : ViewModel
     {

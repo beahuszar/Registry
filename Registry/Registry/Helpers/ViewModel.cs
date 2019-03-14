@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Registry
+namespace Registry.DesktopClient.Helpers
 {
     /// <summary>
     /// If we have a property that is decorated with a data validation attribute

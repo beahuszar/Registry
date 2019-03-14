@@ -1,4 +1,4 @@
-﻿namespace Registry
+﻿namespace Registry.DesktopClient.ViewModels
 {
     public class AssociationAddress : BaseAddress
     {

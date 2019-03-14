@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Registry
+namespace Registry.DesktopClient.ViewModels
 {
     public class Association
     {
