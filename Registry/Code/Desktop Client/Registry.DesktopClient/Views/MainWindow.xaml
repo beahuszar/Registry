@@ -4,12 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Registry.DesktopClient.ViewModels"
-        xmlns:local="clr-namespace:Registry"
+        xmlns:data="clr-namespace:Registry.Data;assembly=Registry.Data"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:PersonViewModel}"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <DockPanel Margin="30">
         <!-- PropertyChanged: everytime we type a character in the textbox, that invokes a validation -->
-        <TextBox Margin="30" Text="{Binding PersonName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-    </Grid>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="Full Name" Margin="0, 5" />
+            <TextBox Text="{Binding PersonName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Mother's Name" Margin="0, 5" />
+            <TextBox Text="{Binding MothersName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Birth Place" Margin="0, 5" />
+            <TextBox Text="{Binding BirthPlace, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Birth Date" Margin="0, 5" />
+            <TextBox Text="{Binding BirthDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Tax Code" Margin="0, 5" />
+            <TextBox Text="{Binding TaxCode, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Command="{Binding AddPersonCommand}" Margin="0, 20, 650., 0">Add Person</Button>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Persons}" DockPanel.Dock="Bottom">
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type data:Person}">
+                    <TextBlock>
+                        <Run FontWeight="Bold" Text="Bound Details" />
+                        <Run Text="{Binding PersonName}" />
+                        <Run Text="{Binding MothersName}" />
+                        <Run Text="{Binding BirthPlace}" />
+                        <Run Text="{Binding BirthDate}" />
+                        <Run Text="{Binding TaxCode}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListBox>
+    </DockPanel>
 </Window>

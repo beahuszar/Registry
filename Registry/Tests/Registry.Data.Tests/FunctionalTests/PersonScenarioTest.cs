@@ -11,10 +11,18 @@ namespace Registry.Data.Tests.FunctionalTests
         {
             using (var bc = new BusinessContext())
             {
-                //assuming only name is mandatory
-                Person entity = bc.AddNewPerson("TestPerson");
+                var person = new Person
+                {
+                    PersonName = "test person",
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+                };
 
-                bool exists = bc.DataContext.Persons.Any(person => person.Id == entity.Id);
+                bc.AddNewPerson(person);
+
+                bool exists = bc.DataContext.Persons.Any(p => p.Id == person.Id);
 
                 Assert.IsTrue(exists);
             }

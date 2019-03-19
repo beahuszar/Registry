@@ -97,6 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Registry.Data\Registry.Data.csproj">
+      <Project>{726E4701-D220-46F7-AC98-EB6E32C7188F}</Project>
+      <Name>Registry.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Registry.Windows\Registry.Windows.csproj">
       <Project>{D82E4798-6C30-43B6-9742-0FE79A077794}</Project>
       <Name>Registry.Windows</Name>

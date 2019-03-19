@@ -20,23 +20,11 @@ namespace Registry.Data
             get { return context;  }
         }
 
-        public Person AddNewPerson(string name)
+        public void AddNewPerson(Person person)
         {
-            if (name == null)
-                throw new ArgumentNullException("name must not be null");
-
-            if (String.IsNullOrEmpty(name))
-                throw new ArgumentException("name must not be empty string");
-
-            var person = new Person
-            {
-                PersonName = name
-            };
-
+            person.PersonName.CheckStringParameters();
             context.Persons.Add(person);
             context.SaveChanges();
-
-            return person;
         }
 
         #region Disposable Members

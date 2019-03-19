@@ -12,7 +12,15 @@ namespace Registry.Data.Tests.UnitTests
         {
             using (var context = new BusinessContext())
             {
-                context.AddNewPerson(null);
+                var person = new Person
+                {
+                    PersonName = null,
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+                };
+                context.AddNewPerson(person);
             }
         }
 
@@ -22,7 +30,15 @@ namespace Registry.Data.Tests.UnitTests
         {
             using (var context = new BusinessContext())
             {
-                context.AddNewPerson("");
+                var person = new Person
+                {
+                    PersonName = "",
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+                };
+                context.AddNewPerson(person);
             }
         }
     }

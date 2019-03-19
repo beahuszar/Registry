@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Registry.Windows
 {
@@ -40,10 +41,12 @@ namespace Registry.Windows
             var isValid = Validator.TryValidateObject(this, context, results, true);
 
             if (!isValid)
-                foreach (var result in results)
-                    foreach (var member in result.MemberNames)
-                        if (member == columnName && result.ErrorMessage != null)
-                            return result.ErrorMessage;
+            {
+                ValidationResult result = results
+                    .SingleOrDefault(p => p.MemberNames.Any(membername => membername == columnName));
+
+                return result == null ? null : result.ErrorMessage;
+            }
 
             return null;
         }

@@ -60,11 +60,28 @@ namespace Registry.Windows.Tests.UnitTests
             var viewModel = new StubViewModel();
             Assert.IsTrue(typeof(ViewModel).BaseType == typeof(ObservableObject));
         }
+
+        [TestMethod]
+        public void IndexerReturnsErrorMessageForRequestedInvalidProperty()
+        {
+            var viewModel = new StubViewModel
+            {
+                PropertyToBeValidated = null,
+                SomeOtherProperty = null
+            };
+
+            var msg = viewModel["SomeOtherProperty"];
+
+            Assert.AreEqual("The SomeOtherProperty field is required.", msg);
+        }
     }
 
     internal class StubViewModel : ViewModel
     {
         [Required]
         public string PropertyToBeValidated { get; set; }
+
+        [Required]
+        public string SomeOtherProperty { get; set; }
     }
 }

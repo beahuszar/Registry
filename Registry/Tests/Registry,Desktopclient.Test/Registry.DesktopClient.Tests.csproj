@@ -39,6 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\Dependencies\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\Code\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -64,6 +71,7 @@
     <Compile Include="UnitTests\PersonViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -71,6 +79,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Code\Desktop Client\Registry.Data\Registry.Data.csproj">
+      <Project>{726E4701-D220-46F7-AC98-EB6E32C7188F}</Project>
+      <Name>Registry.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Code\Desktop Client\Registry.DesktopClient\Registry.DesktopClient.csproj">
       <Project>{396fc941-1c48-4a2d-bf43-2591f86e1624}</Project>
       <Name>Registry.DesktopClient</Name>
@@ -78,6 +90,10 @@
     <ProjectReference Include="..\..\Code\Desktop Client\Registry.Windows\Registry.Windows.csproj">
       <Project>{d82e4798-6c30-43b6-9742-0fe79a077794}</Project>
       <Name>Registry.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Registry.Data.Tests\Registry.Data.Tests.csproj">
+      <Project>{C3B94924-3BA9-4706-8018-57CDF238DB18}</Project>
+      <Name>Registry.Data.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
