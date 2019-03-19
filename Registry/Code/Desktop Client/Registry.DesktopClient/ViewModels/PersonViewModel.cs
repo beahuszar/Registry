@@ -33,9 +33,6 @@ namespace Registry.DesktopClient.ViewModels
         public string BirthPlace { get; set; }
         public string MothersName { get; set; }
         public string TaxCode { get; set; }
-
-        public List<PersonAddress> PersonAddress { get; set; }
-
         #endregion
     }
 }

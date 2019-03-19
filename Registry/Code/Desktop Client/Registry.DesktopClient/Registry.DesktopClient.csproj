@@ -70,11 +70,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModels\Association.cs" />
-    <Compile Include="ViewModels\AssociationAddress.cs" />
-    <Compile Include="ViewModels\BaseAddress.cs" />
     <Compile Include="ViewModels\PersonViewModel.cs" />
-    <Compile Include="ViewModels\PersonAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

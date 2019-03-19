@@ -2,9 +2,9 @@
 
 namespace Registry.Data
 {
-    public class DomainContext : DbContext
+    public class DataContext : DbContext
     {
-        public DomainContext() : base("name=Default")
+        public DataContext() : base("name=Default")
         {
         }
 

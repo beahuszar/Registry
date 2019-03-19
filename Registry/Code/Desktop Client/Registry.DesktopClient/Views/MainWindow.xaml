@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:Registry"
+        xmlns:viewModels="clr-namespace:Registry.DesktopClient.ViewModels"
         xmlns:local="clr-namespace:Registry"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModels:Person}"
+        d:DataContext="{d:DesignInstance viewModels:PersonViewModel}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <!-- PropertyChanged: everytime we type a character in the textbox, that invokes a validation -->
