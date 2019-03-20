@@ -68,7 +68,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="UnitTests\PersonViewModelTests.cs" />
+    <Compile Include="UnitTests\MainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

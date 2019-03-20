@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Registry.Data
 {
@@ -25,6 +27,23 @@ namespace Registry.Data
             person.PersonName.CheckStringParameters();
             context.Persons.Add(person);
             context.SaveChanges();
+        }
+
+        public void UpdatePerson(Person person)
+        {
+            var entity = context.Persons.Find(person.Id);
+            if (entity == null)
+            {
+                throw new NotImplementedException("Handle appropriately for your API design");
+            }
+
+            context.Entry(person).CurrentValues.SetValues(person);
+            context.SaveChanges();
+        }
+
+        public ICollection<Person> GetPersonList()
+        {
+            return context.Persons.OrderBy(p => p.Id).ToArray();
         }
 
         #region Disposable Members

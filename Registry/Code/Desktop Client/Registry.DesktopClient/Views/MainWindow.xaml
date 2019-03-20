@@ -1,41 +1,64 @@
 ﻿<Window x:Class="Registry.DesktopClient.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:Registry.DesktopClient.ViewModels"
-        xmlns:data="clr-namespace:Registry.Data;assembly=Registry.Data"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModels:PersonViewModel}"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:data="clr-namespace:Registry.Data;assembly=Registry.Data"
+        xmlns:viewModels="clr-namespace:Registry.DesktopClient.ViewModels"
+        xmlns:windows="clr-namespace:Registry.Windows;assembly=Registry.Windows"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <!-- Based on a bool we can hide/show elements in the UI -->
+        <!-- Used down below, unless a person is selected, no functionalities should be activated in the UI -->
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+    </Window.Resources>
+    
     <DockPanel Margin="30">
+        <DockPanel DockPanel.Dock="Left" Width="200" Margin="0, 0, 32, 0">
+            <TextBlock DockPanel.Dock="Top">
+                <Hyperlink Command="{Binding AddPersonCommand}">Add Person</Hyperlink>
+                <Hyperlink Command="{Binding GetPersonListCommand}">Refresh</Hyperlink>
+            </TextBlock>
+            <ListBox ItemsSource="{Binding Persons}" SelectedItem="{Binding SelectedPerson}">
+                <ListBox.Resources>
+                    <DataTemplate DataType="{x:Type data:Person}">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1} ({2})">
+                                    <Binding Path="PersonName"/>
+                                    <Binding Path="MothersName"/>
+                                    <Binding Path="BirthPlace"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.Resources>
+            </ListBox>
+        </DockPanel>
         <!-- PropertyChanged: everytime we type a character in the textbox, that invokes a validation -->
-        <StackPanel DockPanel.Dock="Top">
-            <TextBlock Text="Full Name" Margin="0, 5" />
-            <TextBox Text="{Binding PersonName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Mother's Name" Margin="0, 5" />
-            <TextBox Text="{Binding MothersName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Birth Place" Margin="0, 5" />
-            <TextBox Text="{Binding BirthPlace, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Birth Date" Margin="0, 5" />
-            <TextBox Text="{Binding BirthDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Tax Code" Margin="0, 5" />
-            <TextBox Text="{Binding TaxCode, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Command="{Binding AddPersonCommand}" Margin="0, 20, 650., 0">Add Person</Button>
+        <StackPanel DockPanel.Dock="Right" Visibility="{Binding HasPerson, Converter={StaticResource VisibilityConverter}}">
+            <TextBlock Text="Full Name" />
+            <TextBox Text="{Binding SelectedPerson.PersonName, 
+                                    ValidatesOnDataErrors=True, 
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Mother's Name" />
+            <TextBox Text="{Binding SelectedPerson.MothersName, 
+                                    ValidatesOnDataErrors=True, 
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Birth Place" />
+            <TextBox Text="{Binding SelectedPerson.BirthPlace,
+                                    ValidatesOnDataErrors=True, 
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock>
+                <Hyperlink Command="{Binding SavePersonCommand}">Save</Hyperlink>
+                <Hyperlink Command="{Binding DeletePersonCommand}">Delete</Hyperlink>
+            </TextBlock>
         </StackPanel>
-        <ListBox ItemsSource="{Binding Persons}" DockPanel.Dock="Bottom">
-            <ListBox.Resources>
-                <DataTemplate DataType="{x:Type data:Person}">
-                    <TextBlock>
-                        <Run FontWeight="Bold" Text="Bound Details" />
-                        <Run Text="{Binding PersonName}" />
-                        <Run Text="{Binding MothersName}" />
-                        <Run Text="{Binding BirthPlace}" />
-                        <Run Text="{Binding BirthDate}" />
-                        <Run Text="{Binding TaxCode}" />
-                    </TextBlock>
-                </DataTemplate>
-            </ListBox.Resources>
-        </ListBox>
     </DockPanel>
 </Window>
