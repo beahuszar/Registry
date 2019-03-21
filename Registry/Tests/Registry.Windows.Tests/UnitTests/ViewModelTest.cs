@@ -26,7 +26,7 @@ namespace Registry.Windows.Tests.UnitTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
+        [ExpectedException(typeof(NotSupportedException))]
         public void IDataErrorInfo_ErrorProperty_IsNotImplemented()
         {
             var viewModel = new StubViewModel();

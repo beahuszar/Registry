@@ -152,7 +152,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            viewModel.AddCommand.CanExecute(null);
+            viewModel.AddCommand.Execute(null);
             Assert.IsTrue(viewModel.Persons.Count == 1);
         }
 
