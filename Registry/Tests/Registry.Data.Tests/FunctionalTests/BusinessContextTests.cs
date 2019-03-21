@@ -44,7 +44,30 @@ namespace Registry.Data.Tests.UnitTests
         }
 
         [TestMethod]
-        public void UpdatePerson_ChangedValuesAreApplied()
+        public void AddNewPerson_PersonIsStoredInDataStore()
+        {
+            using (var bc = new BusinessContext())
+            {
+                var person = new Person
+                {
+                    PersonName = "test name",
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+
+                };
+
+                bc.CreatePerson(person);
+
+                bool exists = bc.DataContext.Persons.Any(p => p.Id == person.Id);
+
+                Assert.IsTrue(exists);
+            }
+        }
+
+        [TestMethod]
+        public void UpdatePerson_AppliedValuesAreStoredInDataStore()
         {
             using (var bc = new BusinessContext())
             {
@@ -88,7 +111,7 @@ namespace Registry.Data.Tests.UnitTests
         }
 
         [TestMethod]
-        public void GetPersonList_ReturnsExpectedPersons()
+        public void GetPersonList_ReturnsExpectedListOfPersonsEntities()
         {
             using (var bc = new BusinessContext())
             {
@@ -104,6 +127,27 @@ namespace Registry.Data.Tests.UnitTests
 
                 //Use CollectionAssert by overriding Equals in entities
                 //or using IComparer in CollectionAssert for a more full-proof solution
+            }
+        }
+
+        [TestMethod]
+        public void DeletePerson_RemovesPersonFromDataStore()
+        {
+            using (var bc = new BusinessContext())
+            {
+                var person = new Person
+                {
+                    PersonName = "test name",
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+
+                };
+
+                bc.CreatePerson(person);
+                bc.DeletePerson(person);
+                Assert.IsFalse(bc.DataContext.Persons.Any());
             }
         }
     }

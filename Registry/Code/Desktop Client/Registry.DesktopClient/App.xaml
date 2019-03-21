@@ -5,6 +5,5 @@
 
     <Application.Resources>
         <!-- StartupUri="MainWindow.xaml">is removed, instead OnStartUp is overridden in App.xaml.cs -->
-
     </Application.Resources>
 </Application>

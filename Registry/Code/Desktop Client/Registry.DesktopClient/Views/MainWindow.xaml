@@ -22,7 +22,7 @@
     <DockPanel Margin="30">
         <DockPanel DockPanel.Dock="Left" Width="200" Margin="0, 0, 32, 0">
             <TextBlock DockPanel.Dock="Top">
-                <Hyperlink Command="{Binding AddPersonCommand}">Add Person</Hyperlink>
+                <Hyperlink Command="{Binding AddCommand}">Add Person</Hyperlink>
                 <Hyperlink Command="{Binding GetPersonListCommand}">Refresh</Hyperlink>
             </TextBlock>
             <ListBox ItemsSource="{Binding Persons}" SelectedItem="{Binding SelectedPerson}">
@@ -42,7 +42,7 @@
             </ListBox>
         </DockPanel>
         <!-- PropertyChanged: everytime we type a character in the textbox, that invokes a validation -->
-        <StackPanel DockPanel.Dock="Right" Visibility="{Binding HasPerson, Converter={StaticResource VisibilityConverter}}">
+        <StackPanel DockPanel.Dock="Right" Visibility="{Binding CanModify, Converter={StaticResource VisibilityConverter}}">
             <TextBlock Text="Full Name" />
             <TextBox Text="{Binding SelectedPerson.PersonName, 
                                     ValidatesOnDataErrors=True, 
@@ -56,8 +56,8 @@
                                     ValidatesOnDataErrors=True, 
                                     UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock>
-                <Hyperlink Command="{Binding SavePersonCommand}">Save</Hyperlink>
-                <Hyperlink Command="{Binding DeletePersonCommand}">Delete</Hyperlink>
+                <Hyperlink Command="{Binding UpdateCommand}">Save</Hyperlink>
+                <Hyperlink Command="{Binding DeleteCommand}">Delete</Hyperlink>
             </TextBlock>
         </StackPanel>
     </DockPanel>

@@ -26,6 +26,7 @@ namespace Registry.DesktopClient
 
             //whenever and instance of IBusinessContext is asked, BusinessContext's implementation has to be provided
             container.RegisterType<IBusinessContext, BusinessContext>();
+
             //ViewModel's constructor is using the IBusinessContext, thus MainViewModel has to be registered too and resolved
             container.RegisterType<MainViewModel>();
 

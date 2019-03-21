@@ -5,10 +5,12 @@ using System.Linq;
 namespace Registry.Data
 {
     /// <summary>
-    /// Making it sealed, because we do not want people to get around business rules
+    /// Encapsulates business rules when accessing the data layer
     /// </summary>
     public sealed class BusinessContext : IDisposable, IBusinessContext
     {
+        #region Private fields, public properties & constructors
+
         private readonly DataContext context;
         private bool disposed;
 
@@ -17,18 +19,31 @@ namespace Registry.Data
             this.context = new DataContext();
         }
 
+        /// <summary>
+        /// Getter for context
+        /// </summary>
         public DataContext DataContext
         {
             get { return context;  }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Adds a new Person entity to the data store
+        /// </summary>
         public void CreatePerson(Person person)
         {
             person.PersonName.CheckStringParameters();
+
             context.Persons.Add(person);
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Updates the specified person by applying the values passed in over the existing values from the data store
+        /// </summary>
+        /// <param name="person"> the person entity containing the new values to persist </param>
         public void UpdatePerson(Person person)
         {
             var entity = context.Persons.Find(person.Id);
@@ -41,18 +56,24 @@ namespace Registry.Data
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes the specified person
+        /// </summary>
         public void DeletePerson(Person person)
         {
             context.Persons.Remove(person);
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets a collection of customers from the data store and returns them ordered by primary key
+        /// </summary>
         public ICollection<Person> GetPersonList()
         {
             return context.Persons.OrderBy(p => p.Id).ToArray();
         }
 
-        #region Disposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing or resetting unmanaged resources
@@ -65,7 +86,7 @@ namespace Registry.Data
 
         private void Dispose(bool disposing)
         {
-            if (disposed || disposing)
+            if (disposed || !disposing)
                 return;
 
             if (context != null)
@@ -73,6 +94,7 @@ namespace Registry.Data
 
             disposed = true;
         }
+
         #endregion
     }
 }

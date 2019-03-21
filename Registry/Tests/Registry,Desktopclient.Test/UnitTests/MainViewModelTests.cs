@@ -63,7 +63,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            Assert.IsFalse(viewModel.AddPersonCommand.CanExecute(null));
+            Assert.IsFalse(viewModel.AddCommand.CanExecute(null));
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            Assert.IsFalse(viewModel.AddPersonCommand.CanExecute(null));
+            Assert.IsFalse(viewModel.AddCommand.CanExecute(null));
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            Assert.IsFalse(viewModel.AddPersonCommand.CanExecute(null));
+            Assert.IsFalse(viewModel.AddCommand.CanExecute(null));
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            Assert.IsFalse(viewModel.AddPersonCommand.CanExecute(null));
+            Assert.IsFalse(viewModel.AddCommand.CanExecute(null));
         }
 
         [TestMethod]
@@ -135,7 +135,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            Assert.IsFalse(viewModel.AddPersonCommand.CanExecute(null));
+            Assert.IsFalse(viewModel.AddCommand.CanExecute(null));
         }
 
         [TestMethod]
@@ -153,7 +153,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
                 }
             };
 
-            viewModel.AddPersonCommand.Execute();
+            viewModel.AddCommand.CanExecute(null);
             Assert.IsTrue(viewModel.Persons.Count == 1);
         }
 
@@ -187,7 +187,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
 
             //Act
             viewModel.SelectedPerson.PersonName = "newValue";
-            viewModel.SavePersonCommand.Execute(null);
+            viewModel.UpdateCommand.Execute(null);
 
             //Assert that the UpdatePerson method in fact invokes the SavePersonCommand
             mock.Verify(m => m.UpdatePerson(It.IsAny<Person>()), Times.Once);
@@ -205,7 +205,7 @@ namespace Registry.Desktopclient.Tests.UnitTests
             viewModel.SelectedPerson = viewModel.Persons.First();
 
             //Act
-            viewModel.DeletePersonCommand.Execute(null);
+            viewModel.DeleteCommand.Execute(null);
 
             //Assert
             mock.Verify(m => m.DeletePerson(It.IsAny<Person>()), Times.Once);

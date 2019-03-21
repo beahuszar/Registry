@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace Registry.DesktopClient.ViewModels
 {
+    /// <summary>
+    /// Main application view-model
+    /// </summary>
     public class MainViewModel : ViewModel
     {
         #region Private fields
@@ -27,6 +30,25 @@ namespace Registry.DesktopClient.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// Indicates whether the selected person is not null
+        /// </summary>
+        public bool CanModify
+        {
+            get
+            {
+                return SelectedPerson != null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the collection of persons loaded from the data store
+        /// </summary>
+        public ICollection<Person> Persons { get; private set; }
+
+        /// <summary>
+        /// Getter & Setter for the selected person
+        /// </summary>
         public Person SelectedPerson
         {
             get
@@ -38,9 +60,25 @@ namespace Registry.DesktopClient.ViewModels
             {
                 selectedPerson = value;
                 NotifyPropertyChanged();
+                //ReSharper disable once ExplicitCallerInfoArgument
+                NotifyPropertyChanged("CanModify");
             }
         }
 
+        /// <summary>
+        /// Checks whether the view-model is valid
+        /// </summary>
+        /// <remarks>
+        /// Now there isn't any actual validation happening. 
+        /// This is because the wiring into the CommandManager.RequerySuggested in ActionCommand was removed because it is not the
+        /// proper way to do commanding. It has unexpected behavior and severe performance implications, and should never be
+        /// done.
+        /// 
+        /// To enable this again, another view-model needs to be implemented or the facade pattern used in place of using the
+        /// person entity directly so that INotifyPropertyChanged can be implemented and ActionCommand.CanExecute(object) used
+        /// when necessary, ultimately updating the commanding system, which will re-enable the enabling/disabling of UI elements
+        /// based on the return value.
+        /// </remarks>
         public bool isValid
         {
             get
@@ -54,37 +92,9 @@ namespace Registry.DesktopClient.ViewModels
             }
         }
         
-        public ActionCommand AddPersonCommand
-        {
-            get
-            {
-                return new ActionCommand(
-                    p => AddPerson(),
-                    p => isValid);
-            }
-        }
-
-        public ActionCommand SavePersonCommand
-        {
-            get
-            {
-                return new ActionCommand(
-                    p => SavePerson(),
-                    p => isValid);
-            }
-        }
-
-        public ActionCommand DeletePersonCommand
-        {
-            get
-            {
-                return new ActionCommand(
-                    p => DeletePerson());
-            }
-        }
-
-        public ICollection<Person> Persons { get; private set; }
-
+        /// <summary>
+        /// Gets the command that invokes the creation of a new person
+        /// </summary>
         public ICommand AddCommand
         {
             get
@@ -96,6 +106,9 @@ namespace Registry.DesktopClient.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the command that invokes the an update of the selected person
+        /// </summary>
         public ICommand UpdateCommand
         {
             get
@@ -106,6 +119,9 @@ namespace Registry.DesktopClient.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the command that invokes the deletion of the selected person
+        /// </summary>
         public ICommand DeleteCommand
         {
             get
@@ -114,6 +130,9 @@ namespace Registry.DesktopClient.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the command that invokes the retrieval of a list of person entities
+        /// </summary>
         public ICommand GetPersonListCommand
         {
             get

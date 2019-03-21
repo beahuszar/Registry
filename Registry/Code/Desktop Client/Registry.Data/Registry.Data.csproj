@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="BusinessContext.cs" />
     <Compile Include="Check.cs" />
-    <Compile Include="DomainContext.cs" />
+    <Compile Include="DataContext.cs" />
     <Compile Include="IBusinessContext.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
