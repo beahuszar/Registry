@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Registry.Data;
-using Registry.Data.Tests;
 using Registry.DesktopClient.ViewModels;
 using Registry.Windows;
 using System.Collections.Generic;

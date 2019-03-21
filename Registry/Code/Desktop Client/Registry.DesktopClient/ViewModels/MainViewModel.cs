@@ -3,7 +3,6 @@ using Registry.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 
 namespace Registry.DesktopClient.ViewModels
