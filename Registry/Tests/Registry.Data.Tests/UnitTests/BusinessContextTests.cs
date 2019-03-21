@@ -21,7 +21,7 @@ namespace Registry.Data.Tests.UnitTests
                     BirthDate = "2018",
                     TaxCode = "randomcode"
                 };
-                context.AddNewPerson(person);
+                context.CreatePerson(person);
             }
         }
 
@@ -39,7 +39,7 @@ namespace Registry.Data.Tests.UnitTests
                     BirthDate = "2018",
                     TaxCode = "randomcode"
                 };
-                context.AddNewPerson(person);
+                context.CreatePerson(person);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Registry.Data.Tests.UnitTests
                     TaxCode = "randomcode"
                 };
 
-                bc.AddNewPerson(person);
+                bc.CreatePerson(person);
 
                 const string
                     newPersonName = "new name",
@@ -92,9 +92,9 @@ namespace Registry.Data.Tests.UnitTests
         {
             using (var bc = new BusinessContext())
             {
-                bc.AddNewPerson(new Person { PersonName = "xy", MothersName = "mom", BirthPlace = "city", BirthDate = "now", TaxCode = "code" });
-                bc.AddNewPerson(new Person { PersonName = "test", MothersName = "mommy", BirthPlace = "town", BirthDate = "then", TaxCode = "anothercode" });
-                bc.AddNewPerson(new Person { PersonName = "someoneelse", MothersName = "mum", BirthPlace = "village", BirthDate = "never", TaxCode = "verycode" });
+                bc.CreatePerson(new Person { PersonName = "xy", MothersName = "mom", BirthPlace = "city", BirthDate = "now", TaxCode = "code" });
+                bc.CreatePerson(new Person { PersonName = "test", MothersName = "mommy", BirthPlace = "town", BirthDate = "then", TaxCode = "anothercode" });
+                bc.CreatePerson(new Person { PersonName = "someoneelse", MothersName = "mum", BirthPlace = "village", BirthDate = "never", TaxCode = "verycode" });
 
                 var customers = bc.GetPersonList();
 

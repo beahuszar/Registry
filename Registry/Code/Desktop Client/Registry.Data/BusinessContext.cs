@@ -7,7 +7,7 @@ namespace Registry.Data
     /// <summary>
     /// Making it sealed, because we do not want people to get around business rules
     /// </summary>
-    public sealed class BusinessContext : IDisposable
+    public sealed class BusinessContext : IDisposable, IBusinessContext
     {
         private readonly DataContext context;
         private bool disposed;
@@ -22,7 +22,7 @@ namespace Registry.Data
             get { return context;  }
         }
 
-        public void AddNewPerson(Person person)
+        public void CreatePerson(Person person)
         {
             person.PersonName.CheckStringParameters();
             context.Persons.Add(person);
@@ -38,6 +38,12 @@ namespace Registry.Data
             }
 
             context.Entry(person).CurrentValues.SetValues(person);
+            context.SaveChanges();
+        }
+
+        public void DeletePerson(Person person)
+        {
+            context.Persons.Remove(person);
             context.SaveChanges();
         }
 

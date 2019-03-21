@@ -12,21 +12,17 @@ namespace Registry.DesktopClient.ViewModels
     {
         #region Private fields
 
+        private readonly IBusinessContext context;
         private Person selectedPerson;
-        private readonly BusinessContext context;
 
         #endregion
 
         #region Constructors
 
-        public MainViewModel() : this(new BusinessContext())
+        public MainViewModel(IBusinessContext context)
         {
-        }
-
-        public MainViewModel(BusinessContext context)
-        {
-            this.context = context;
             Persons = new ObservableCollection<Person>();
+            this.context = context;
         }
 
         #endregion
@@ -89,6 +85,35 @@ namespace Registry.DesktopClient.ViewModels
 
         public ICollection<Person> Persons { get; private set; }
 
+        public ICommand AddCommand
+        {
+            get
+            {
+                return new ActionCommand(
+                    p => AddPerson(),
+                    p => isValid);
+
+            }
+        }
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new ActionCommand(
+                    p => SavePerson(),
+                    p => isValid);
+            }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new ActionCommand(p => DeletePerson());
+            }
+        }
+
         public ICommand GetPersonListCommand
         {
             get
@@ -97,31 +122,28 @@ namespace Registry.DesktopClient.ViewModels
             }
         }
 
-        private void AddPerson ()
+        private void AddPerson()
         {
-           using (var api = new BusinessContext())
+           var person = new Person
            {
-               var person = new Person
-               {
-                   PersonName = "default",
-                   MothersName = "default",
-                   BirthPlace = "default",
-                   BirthDate = "default",
-                   TaxCode = "default"
-               };
+               PersonName = "default",
+               MothersName = "default",
+               BirthPlace = "default",
+               BirthDate = "default",
+               TaxCode = "default"
+           };
            
-               try
-               {
-                   api.AddNewPerson(person);
-               }
-               catch (Exception e)
-               {
-                   //TODO: add exception catches (sql, ef)
-                   return;
-               }
-           
-               Persons.Add(person);
+           try
+           {
+               context.CreatePerson(person);
            }
+           catch (Exception e)
+           {
+               //TODO: add exception catches (sql, ef)
+               return;
+           }
+           
+           Persons.Add(person);
         }
 
         private void SavePerson()
@@ -131,9 +153,9 @@ namespace Registry.DesktopClient.ViewModels
 
         private void DeletePerson()
         {
-            context.DataContext.Persons.Remove(SelectedPerson);
-            context.DataContext.SaveChanges();
+            context.DeletePerson(SelectedPerson);
             Persons.Remove(SelectedPerson);
+            SelectedPerson = null;
         }
 
         private void GetPersonList()

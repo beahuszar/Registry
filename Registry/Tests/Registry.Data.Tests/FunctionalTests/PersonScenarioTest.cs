@@ -20,11 +20,31 @@ namespace Registry.Data.Tests.FunctionalTests
                     TaxCode = "randomcode"
                 };
 
-                bc.AddNewPerson(person);
+                bc.CreatePerson(person);
 
                 bool exists = bc.DataContext.Persons.Any(p => p.Id == person.Id);
 
                 Assert.IsTrue(exists);
+            }
+        }
+
+        [TestMethod]
+        public void DeletePerson_RemovesPersonFromDataStore()
+        {
+            using (var bc = new BusinessContext())
+            {
+                var person = new Person
+                {
+                    PersonName = "test person",
+                    MothersName = "test persons's mom",
+                    BirthPlace = "test city",
+                    BirthDate = "2018",
+                    TaxCode = "randomcode"
+                };
+
+                bc.CreatePerson(person);
+                bc.DeletePerson(person);
+                Assert.IsFalse(bc.DataContext.Persons.Any());
             }
         }
     }
